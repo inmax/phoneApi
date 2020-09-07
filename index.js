@@ -1,28 +1,30 @@
 const express = require("express");
 const mockData = require("./mockPhones.json");
-const bodyparser = require("body-parser"); //indicamos que recibimos los datos en json. Es de otro recurso
+const bodyparser = require("body-parser"); 
 const port = 3000;
 const cors = require("cors");
+
 
 
 const app = express();
 app.use(cors());
 
 app.use(bodyparser.urlencoded({ extended: false }));
-app.use(bodyparser.json()); //configuraciones para el formato json
-//Como utilizar asset static. Se utilizan como recursos eventuales hasta que termina la carga del recurso final
-//Images, css lik fonts
+app.use(bodyparser.json());
+
+//INITIAL ASSETS
 app.use(express.static("public"));
 
 //ENDPOINT
-app.get("/phones", (req, res) => {
-  //recuerda que json() devuelve una promesa. res.send() serviría para cualquier formato
+app.get("/phones", (req, res , next) => {
   res.json(mockData);
 });
 
-// app.get("/phones", cors(corsOptions), (req, res) => {
-//   res.json({ mensaje: "ok"});
-// });
+//error handler
+app.use(function(err, req, res, next){
+  console.log(err.stack);    // e.g., Not valid name
+  return res.status(500).send('Internal Server Occured');
+});
 
 app.listen(port, () => {
   console.log("estoy atento del puerto 3000");
