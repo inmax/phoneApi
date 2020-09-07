@@ -20,12 +20,4 @@ app.get("/phones", (req, res , next) => {
   res.json(mockData);
 });
 
-//error handler
-app.use(function(err, req, res, next){
-  console.log(err.stack);    // e.g., Not valid name
-  return res.status(500).send('Internal Server Occured');
-});
-
-app.listen(port, () => {
-  console.log("estoy atento del puerto 3000");
-});
+app.listen(port);
