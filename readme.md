@@ -1,4 +1,4 @@
-# Phone Catalogue App
+# Phone Catalogue Api
 
 Api rest full mock 
 
@@ -29,7 +29,7 @@ $  meta git clone https://github.com/inmax/phone-catalogue.git
 ``` 
 
 ## Getting started
-#### [Api](https://github.com/inmax/phoneApi.git)
+
 In the project app directory, you can run:
 ```bash
 $ cd phoneApi
